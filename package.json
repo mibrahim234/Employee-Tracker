@@ -1,0 +1,26 @@
+{
+  "name": "employeetracker",
+  "version": "1.0.0",
+  "description": "--first npm i --run schema/seeds files -- mysql -u root -p  -- Run code: source db/schema.sql  --  Run code : source db/seeds.sql  -- SHOW databases; -- USE (databasename); -- SHOW tables; -- SELECT FROM * (databasename);  -- DESCRIBE (databasename);",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mibrahim234/Employee-Tracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mibrahim234/Employee-Tracker/issues"
+  },
+  "homepage": "https://github.com/mibrahim234/Employee-Tracker#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^8.2.0",
+    "mysql2": "^2.3.3"
+  }
+}
