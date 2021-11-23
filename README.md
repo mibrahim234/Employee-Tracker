@@ -1,4 +1,17 @@
 # 12 SQL: Employee Tracker
+--first npm i
+--run schema/seeds files
+-- mysql -u root -p 
+-- Run code: source db/schema.sql 
+--  Run code : source db/seeds.sql 
+-- SHOW databases;
+-- USE (databasename);
+-- SHOW tables;
+-- SELECT FROM * (databasename); 
+-- DESCRIBE (databasename); 
+
+--always start db first colomn with id
+
 
 Developers are often tasked with creating interfaces that make it easy for non-developers to view and interact with information stored in databases. These interfaces are known as Content Management Systems (CMS). Your challenge this week is to build a command-line application to manage a company's database of employees using Node.js, Inquirer, and MySQL.
 
@@ -109,3 +122,42 @@ You are required to submit BOTH of the following for review:
 
 - - -
 © 2021 Trilogy Education Services, LLC, a 2U, Inc. brand. Confidential and Proprietary. All Rights Reserved.
+
+
+mysql -u root -p
+sourcedb/db.sql (initialize database)
+source db/schema.sql
+source db/seeds.sql 
+
+# Employee Tracker ![GitHub license](https://img.shields.io/badge/license-MIT%20License-blue.svg)
+# Live Site 
+https://github.com/mibrahim234/Employee-Tracker
+
+## Your Task
+This application is designed to function as an employee tracker. The user can manage all employees, roles, and departments using the CLI of their choice. The application allows the user to add, view, or delete employees, roles, or departments. 
+
+## Table of Contents
+* [Installation](#installation)
+* [Usage](#usage)
+* [License](#license)
+* [Credits](#credits)
+* [Tests](#tests)
+* [Questions](#questions)
+
+## Installation
+To install this application go to https://github.com/mibrahim234/Employee-Tracker. Clone the repo by pressing the green button. User can clone using an SSH key or HTTPS key. User will also be able to download the zip file. User should open the integrated terminal from the index.js file and download the dependencies by typing npm i. npm i will install the dependencies and devdependencies from this application. 
+## Usage 
+ In order to use this application. You must cd into the employee-tracker respository via your CLI. Once there, you will need to type in 'npm install' in order to install all dependencies. After all dependencies are installed, you type in 'node server' to initialize the server. Once here you can use the application by following the inquirer prompts.
+
+  
+## License
+Copyright (c) [2021]
+The license is MIT License. 
+Read more about it at https://opensource.org/licenses/MIT.
+## Credits
+Made with ❤️ by Mohammad Ibrahim
+
+## Questions
+If you have any additional questions please contact me at mohamm1417@gmail.com.
+GitHub: https://github.com/mibrahim234
+
