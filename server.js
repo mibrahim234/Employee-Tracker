@@ -337,3 +337,10 @@ function addRole() {
     });
 }
 
+function updateRole() {
+
+}
+
+function allEmployeesDepartment () {
+    
+}
