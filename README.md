@@ -1,7 +1,7 @@
 #  Employee Tracker ![GitHub license](https://img.shields.io/badge/license-MIT%20License-blue.svg)
 
 ## Description
-This application is designed to function as an employee tracker. The user can manage all employees, roles, and departments using the CLI of their choice. The application allows the user to add, view, or delete employees, roles, or departments. Additionally. the use can update the employees role and view total or individual department budget.
+This application is designed to function as an employee tracker. The user can manage all employees, roles, and departments using the CLI of their choice. The application allows the user to add, view, or delete employees, roles, or departments. Additionally. the user can update the employees role and view all employees by department. 
 
 ## Table of Contents
 * [Installation](#installation)
