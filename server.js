@@ -169,3 +169,33 @@ function viewAllEmployees() {
         init();
     });
 }
+
+// view all roles 
+function viewAllRoles() {
+    inquirer
+        .prompt([
+            {
+                type: "list",
+                name: "role",
+                message: "Which role would you like to view?",
+                choices: roles,
+            },
+        ])
+        .then(function (response) {
+            const query = `
+                SELECT a.id, a.first_name, a.last_name, b.title, c.department, b.salary
+                FROM employee a
+                INNER JOIN role b ON (a.role_id = b.id)
+                INNER JOIN department c ON (b.department_id = c.id)
+                WHERE b.title = ?
+            `;
+            connection.query(query, response.role, function (err, res) {
+                console.table(res);
+                init();
+            });
+        });
+}
+
+
+  // view all departments 
+  
