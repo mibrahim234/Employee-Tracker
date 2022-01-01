@@ -18,17 +18,17 @@ var connection = mysql.createConnection({
   });
 
  var choices = [
-                 "View All Employees",
+                "View All Employees",
                 "View All Departments",
                 "View All Roles",
                 "Add new Employee",
                 "Add new Department",
                 "Add new Role",
                 "Update Employee Role",
-                "Exit",
+                "Exit"
  ];
 
- var departments = [];
+var departments = [];
 var deptIDS = [];
 var roles = [];
 var rolesIDS = [];
@@ -37,10 +37,7 @@ var employeeIDS = [];
 
 // all departments
 function getDepartment() {
-    connection.query("SELECT id, department FROM department", function (
-        err,
-        res
-    ) {
+    connection.query("SELECT id, department FROM department", function ( err, res) {
         departments = [];
         res.forEach((item) => {
             departments.push(item.department);
@@ -176,7 +173,7 @@ function viewAllDepartments() {
         .prompt([
             {
                 type: "list",
-                name: "dept",
+                name: "department",
                 message: "Which department would you like to view?",
                 choices: departments,
             },
@@ -189,7 +186,7 @@ function viewAllDepartments() {
                 INNER JOIN department c ON (b.department_id = c.id)
                 WHERE c.department = ?
             `;
-            connection.query(query, response.dept, function (err, res) {
+            connection.query(query, response.department, function (err, res) {
                 console.table(res);
                 init();
             });
