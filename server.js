@@ -269,7 +269,28 @@ function addEmployee() {
   
 // add department  
 function addDepartment() {
-    
+    inquirer
+    .prompt([
+        {
+            type: "input",
+            name: "newDepartment",
+            message:
+                "What is the new department that you would like to add?",
+        },
+    ])
+    .then(function (response) {
+        connection.query(
+            "INSERT INTO department SET ?",
+            {
+                department: response.newDept,
+            },
+            function (err, res) {
+                if (err) throw err;
+                console.log("Department added successfully!")
+                init();
+            }
+        );
+    });
 }
 
 // add role 
