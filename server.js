@@ -2,6 +2,7 @@ const mysql = require("mysql");
 const inquirer = require("inquirer");
 const cTable = require('console.table');
 
+
 var connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
@@ -12,7 +13,7 @@ var connection = mysql.createConnection({
 
   connection.connect(function(err) {
     if (err) throw err;
-    console.log ();
+    console.log();
     init();
   });
 
@@ -34,6 +35,7 @@ var rolesIDS = [];
 var employees = [];
 var employeeIDS = [];
 
+// all departments
 function getDepartment() {
     connection.query("SELECT id, department FROM department", function (
         err,
@@ -53,6 +55,7 @@ function getDepartment() {
     });
 }
 
+// all roles
  function getRoles() {
     connection.query("SELECT id, title FROM role", function (err, res) {
         roles = [];
@@ -71,7 +74,8 @@ function getDepartment() {
     });
 }
  
-function getEmployee() {
+// all employees
+function getEmployees() {
     connection.query(
         "SELECT id, first_name, last_name FROM employee",
         function (err, res) {
@@ -97,7 +101,7 @@ function getEmployee() {
   function init() {
       getDepartment();
       getRoles();
-      getEmployee();
+      getEmployees();
       inquirer
       .prompt([
           {
@@ -148,5 +152,20 @@ function getEmployee() {
         connection.end();
         break;
       }
+    });
+}
+
+// view employees
+function viewAllEmployees() {
+    const query = `
+        SELECT a.id, a.first_name, a.last_name, b.title, c.department, b.salary
+        FROM employee a
+        INNER JOIN role b ON (a.role_id = b.id)
+        INNER JOIN department c ON (b.department_id = c.id)
+        ORDER BY a.id
+        `;
+    connection.query(query, function (err, res) {
+        console.table(res);
+        init();
     });
 }
