@@ -155,7 +155,7 @@ function getEmployees() {
     });
 }
 
-// view employees
+// view all employees
 function viewAllEmployees() {
     const query = `
         SELECT a.id, a.first_name, a.last_name, b.title, c.department, b.salary
@@ -169,6 +169,32 @@ function viewAllEmployees() {
         init();
     });
 }
+
+// view all departments 
+function viewAllDepartments() {
+    inquirer
+        .prompt([
+            {
+                type: "list",
+                name: "dept",
+                message: "Which department would you like to view?",
+                choices: departments,
+            },
+        ])
+        .then(function (response) {
+            const query = `
+                SELECT a.id, a.first_name, a.last_name, b.title, c.department, b.salary
+                FROM employee a
+                INNER JOIN role b ON (a.role_id = b.id)
+                INNER JOIN department c ON (b.department_id = c.id)
+                WHERE c.department = ?
+            `;
+            connection.query(query, response.dept, function (err, res) {
+                console.table(res);
+                init();
+            });
+        });
+        }
 
 // view all roles 
 function viewAllRoles() {
@@ -196,6 +222,17 @@ function viewAllRoles() {
         });
 }
 
+// add new employee 
+function addEmployee() {
 
-  // view all departments 
+}
   
+// add department  
+function addDepartment() {
+    
+}
+
+// add role 
+function addRole() {
+    
+}
