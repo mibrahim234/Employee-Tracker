@@ -7,7 +7,7 @@ var connection = mysql.createConnection({
     port: 3306,
     user: "root",
     password: "password",
-    database: "employees",
+    database: "employees"
 });
 
   connection.connect(function(err) {
@@ -26,6 +26,73 @@ var connection = mysql.createConnection({
                 "Update Employee Role",
                 "Exit",
  ];
+
+ var departments = [];
+var deptIDS = [];
+var roles = [];
+var rolesIDS = [];
+var employees = [];
+var employeeIDS = [];
+
+function getDepartment() {
+    connection.query("SELECT id, department FROM department", function (
+        err,
+        res
+    ) {
+        departments = [];
+        res.forEach((item) => {
+            departments.push(item.department);
+        });
+        res.forEach((item) => {
+            var obj = {
+                id: item.id,
+                department: item.department,
+            };
+            deptIDS.push(obj);
+        });
+    });
+}
+
+ function getRoles() {
+    connection.query("SELECT id, title FROM role", function (err, res) {
+        roles = [];
+        res.forEach((item) => {
+            if (roles.indexOf(item.title) === -1) {
+                roles.push(item.title);
+            }
+        });
+        res.forEach((item) => {
+            var obj = {
+                id: item.id,
+                role: item.title,
+            };
+            rolesIDS.push(obj);
+        });
+    });
+}
+ 
+function getEmployee() {
+    connection.query(
+        "SELECT id, first_name, last_name FROM employee",
+        function (err, res) {
+            employees = [];
+            res.forEach((item) => {
+       var fullName = `${item.first_name} ${item.last_name}`;
+                employees.push(fullName);
+            });
+            employeeIDS = [];
+            res.forEach((item) => {
+                var obj = {
+                    id: item.id,
+                    firstName: item.first_name,
+                    lastName: item.last_name,
+                };
+                employeeIDS.push(obj);
+            });
+        }
+    );
+}
+
 
   function init() {
       getDepartment();
