@@ -1,6 +1,6 @@
 # 12 SQL: Employee Tracker
 mysql -u root -p
-sourcedb/db.sql (initialize database)
+source db/db.sql (initialize database)
 source db/schema.sql
 source db/seeds.sql 
 

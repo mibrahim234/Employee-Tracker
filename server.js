@@ -1,22 +1,15 @@
 const mysql = require("mysql");
 const inquirer = require("inquirer");
 const cTable = require('console.table');
+const db = require('./db/connection');
 
-
-var connection = mysql.createConnection({
-    host: "localhost",
-    port: 3306,
-    user: "root",
-    password: "password",
-    database: "employees"
-});
-
-  connection.connect(function(err) {
+  // Start server after DB connection
+db.connect(err => {
     if (err) throw err;
-    console.log();
-    init();
-  });
-
+    console.log('Database connected.');
+   init();
+    });
+ 
  var choices = [
                 "View All Employees",
                 "View All Departments",
@@ -362,5 +355,30 @@ function updateRole() {
                 empID = item.id;
             }
         });
+        var roleID = "";
+        rolesIDS.forEach((item) => {
+            if (response.newRole === item.role) {
+                roleID = item.id;
+            }
+        });
+
+        connection.query(
+            "UPDATE employee SET ? WHERE ?",
+            [
+                {
+                    role_id: roleID,
+                },
+                {
+                    id: empID,
+                },
+            ],
+            function (err, res) {
+                if (err) throw err;
+                console.log(`${response.employee}'s role is updated!`)
+                // reprompt the user
+                init();
+            }
+        );
+    });
 }
 
