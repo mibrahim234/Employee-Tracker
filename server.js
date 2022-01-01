@@ -274,5 +274,45 @@ function addDepartment() {
 
 // add role 
 function addRole() {
-    
+    inquirer
+    .prompt([
+        {
+            type: "input",
+            name: "newRole",
+            message: "What is the new role that you would like to add?",
+        },
+        {
+            type: "input",
+            name: "salary",
+            message: "What is the salary?",
+        },
+        {
+            type: "list",
+            name: "department",
+            message: "What department does it belong to?",
+            choices: departments,
+        },
+    ])
+    .then(function (response) {
+        var deptID = "";
+        deptIDS.forEach((item) => {
+            if (response.dept === item.department) {
+                deptID = item.id;
+            }
+        });
+        connection.query(
+            "INSERT INTO role SET ?",
+            {
+                title: response.newRole,
+                salary: response.salary,
+                department_id: deptID,
+            },
+            function (err, res) {
+                if (err) throw err;
+                console.log("Role added successfully!")
+                init();
+            }
+        );
+    });
 }
+
