@@ -331,6 +331,7 @@ function addRole() {
             function (err, res) {
                 if (err) throw err;
                 console.log("Role added successfully!")
+                // reprompt the user
                 init();
             }
         );
@@ -338,9 +339,28 @@ function addRole() {
 }
 
 function updateRole() {
-
+    inquirer
+    .prompt([
+        {
+            type: "list",
+            name: "employee",
+            message: "Which employee would you like to update?",
+            choices: employees,
+        },
+        {
+            type: "list",
+            name: "newRole",
+            message: "What is their new role?",
+            choices: roles,
+        },
+    ])
+    .then(function (response) {
+        var name = response.employee.split(" ");
+        var empID;
+        employeeIDS.forEach((item) => {
+            if (name[0] === item.firstName && name[1] === item.lastName) {
+                empID = item.id;
+            }
+        });
 }
 
-function allEmployeesDepartment () {
-    
-}
