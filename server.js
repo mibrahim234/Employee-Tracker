@@ -221,8 +221,51 @@ function viewAllRoles() {
 
 // add new employee 
 function addEmployee() {
-
+    inquirer
+    .prompt([
+        {
+            type: "input",
+            name: "firstName",
+            message:
+                "What is the first name of the employee you would like to add?",
+        },
+        {
+            type: "input",
+            name: "lastName",
+            message:
+                "What is the last name of the employee you would like to add?",
+        },
+        {
+            type: "list",
+            name: "role",
+            message: "Choose the role of the new employee:",
+            choices: roles,
+        },
+    ])
+    .then(function (response) {
+        var roleID = "";
+        rolesIDS.forEach((item) => {
+            if (response.role === item.role) {
+                roleID = item.id;
+            }
+        });
+        connection.query(
+            "INSERT INTO employee SET ?",
+            {
+                first_name: response.firstName,
+                last_name: response.lastName,
+                role_id: roleID,
+            },
+            function (err, res) {
+                if (err) throw err;
+                console.log("Employee added successfully!")
+                init();
+            }
+            );
+        });
 }
+
+
   
 // add department  
 function addDepartment() {
