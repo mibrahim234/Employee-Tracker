@@ -30,7 +30,7 @@ var employeeIDS = [];
 
 // all departments
 function getDepartment() {
-    connection.query("SELECT id, department FROM department", function ( err, res) {
+    db.query("SELECT id, department FROM department", function ( err, res) {
         departments = [];
         res.forEach((item) => {
             departments.push(item.department);
@@ -47,7 +47,7 @@ function getDepartment() {
 
 // all roles
  function getRoles() {
-    connection.query("SELECT id, title FROM role", function (err, res) {
+    db.query("SELECT id, title, salary, department_id FROM role", function (err, res) {
         roles = [];
         res.forEach((item) => {
             if (roles.indexOf(item.title) === -1) {
@@ -66,7 +66,7 @@ function getDepartment() {
  
 // all employees
 function getEmployees() {
-    connection.query(
+    db.query(
         "SELECT id, first_name, last_name FROM employee",
         function (err, res) {
             employees = [];
