@@ -12,7 +12,7 @@ source db/seeds.sql
 -- SHOW databases;
 -- USE (databasename);
 -- SHOW tables;
--- SELECT FROM * (databasename); 
+-- SELECT * FROM (databasename); 
 -- DESCRIBE (databasename); 
 
 --always start db first colomn with id
