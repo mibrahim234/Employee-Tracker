@@ -139,7 +139,7 @@ function getEmployees() {
         break; 
         
       case "Exit":
-        connection.end();
+        db.end();
         break;
       }
     });
@@ -154,7 +154,7 @@ function viewAllEmployees() {
         INNER JOIN department c ON (b.department_id = c.id)
         ORDER BY a.id
         `;
-    connection.query(query, function (err, res) {
+    db.query(query, function (err, res) {
         console.table(res);
         init();
     });
@@ -179,7 +179,7 @@ function viewAllDepartments() {
                 INNER JOIN department c ON (b.department_id = c.id)
                 WHERE c.department = ?
             `;
-            connection.query(query, response.department, function (err, res) {
+            db.query(query, response.department, function (err, res) {
                 console.table(res);
                 init();
             });
@@ -205,7 +205,7 @@ function viewAllRoles() {
                 INNER JOIN department c ON (b.department_id = c.id)
                 WHERE b.title = ?
             `;
-            connection.query(query, response.role, function (err, res) {
+            db.query(query, response.role, function (err, res) {
                 console.table(res);
                 init();
             });
@@ -242,7 +242,7 @@ function addEmployee() {
                 roleID = item.id;
             }
         });
-        connection.query(
+        db.query(
             "INSERT INTO employee SET ?",
             {
                 first_name: response.firstName,
@@ -272,7 +272,7 @@ function addDepartment() {
         },
     ])
     .then(function (response) {
-        connection.query(
+        db.query(
             "INSERT INTO department SET ?",
             {
                 department: response.newDept,
@@ -314,7 +314,7 @@ function addRole() {
                 deptID = item.id;
             }
         });
-        connection.query(
+        db.query(
             "INSERT INTO role SET ?",
             {
                 title: response.newRole,
@@ -362,7 +362,7 @@ function updateRole() {
             }
         });
 
-        connection.query(
+        db.query(
             "UPDATE employee SET ? WHERE ?",
             [
                 {
